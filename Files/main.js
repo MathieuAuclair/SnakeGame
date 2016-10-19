@@ -24,7 +24,8 @@ this.x = canvas.width/2;
 this.y = canvas.height/2;
 this.xSpeed = 10;
 this.ySpeed = 0;
-
+this.len = 0;
+this.tail = [];
 }
 
 var Update = setInterval(function(){
@@ -36,12 +37,18 @@ var Update = setInterval(function(){
 	{
 		if(s.x == f.x && s.y == f.y)
 		{
-		console.log("Red dot down!");
-		f = new food();
+			s.len++;
+			f = new food();
+		}
+		s.tail[s.len]=[s.x,s.y];
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		for(i = 0; i < s.len; i++)
+		{
+			s.tail[i] = s.tail[i+1];
+			draw(s.tail[i][0],s.tail[i][1],"purple")
 		}
 		s.y += s.ySpeed;
 		s.x += s.xSpeed;
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw(s.x,s.y,"white");
 		draw(f.x,f.y,"red");
 	}
