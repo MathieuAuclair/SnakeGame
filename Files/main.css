@@ -1,0 +1,64 @@
+html
+{
+	/*Wallpaper took from : http://www.magic4walls.com/wallpaper/snake-minimalist-art-funny-green-background-hd-wallpaper-27721.html*/
+	/*I didn't found any copyright, so I do this for precaution*/
+	background:url("Back.jpg"),black;
+	background-repeat:no-repeat;
+	background-position:50% 100%;
+
+}
+body
+{
+	width:800px;
+	height:100%;
+	background:rgba(0,20,0,0.5);
+	margin:auto;
+	display:block;
+}
+canvas
+{
+	margin-bottom:50px;
+}
+h1
+{
+	font-family:titlefont,Verdana;
+	font-size:50px;
+	background:white;
+	border:3px groove black;
+	width:350px;
+	margin-top:20px;
+	margin-bottom:5px;
+}
+div
+{
+	border:2px black;
+	background:black;
+	width:600px;
+	margin:auto;
+	display:block;
+}
+footer
+{
+	background:rgba(0,20,0,0.5);
+	text-align:center;
+	height:50px;
+}
+footer a p
+{
+	padding-top:10px;
+	font-family:titlefont;
+	color:rgba(200,200,200,0.5);
+}
+footer a p:hover
+{
+	color:white;
+	transition:color .5s;
+}
+a
+{
+	text-decoration:none;
+}
+@font-face {
+    font-family:titlefont;
+    src: url(ARCADECLASSIC.TTF);
+}

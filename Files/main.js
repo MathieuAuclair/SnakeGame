@@ -82,21 +82,25 @@ document.addEventListener("keydown", function(event)
 	{
 		s.ySpeed = 0;
 		s.xSpeed = -10;
+		 event.preventDefault();
 	}
 	else if(event.keyCode == 38&&s.ySpeed!=10)
 	{
 		s.ySpeed = -10;
 		s.xSpeed = 0;
+		 event.preventDefault();
 	}
 	else if(event.keyCode == 39&&s.xSpeed!=-10)
 	{
 		s.ySpeed = 0;
 		s.xSpeed = 10;
+		 event.preventDefault();
 	}
 	else if(event.keyCode == 40&&s.ySpeed!=-10)
 	{
 		s.ySpeed = 10;
 		s.xSpeed = 0;
+		 event.preventDefault();
 	}
 	else if(event.keyCode == 82)
 	{
