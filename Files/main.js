@@ -41,10 +41,12 @@ this.ySpeed = 0;
 this.len = 0;
 this.tail = [];
 this.play = true;
+this.color = "purple";
 }
 
-//game loop
-var Update = setInterval(function(){
+//game function that run in the loop
+function Game()
+{
 	if(s.x>canvas.width || s.y>canvas.height || s.x < 0 || s.y < 0||s.dead)
 	{
 	if(s.play) //need to use s.play to prevent clearing interval, so we can restart with 'R'
@@ -67,7 +69,7 @@ var Update = setInterval(function(){
 		for(i = 0; i < s.len; i++)
 		{
 			s.tail[i] = s.tail[i+1];
-			draw(s.tail[i][0],s.tail[i][1],"purple");
+			draw(s.tail[i][0],s.tail[i][1],s.color);
 		}
 		//moving head
 		s.y += s.ySpeed;
@@ -85,7 +87,57 @@ var Update = setInterval(function(){
 		d.totaltime += timelapse;
 		d.time.innerHTML = "time played : "+Math.round(d.totaltime/1000);
 	}
-},timelapse);
+}
+
+//game loop
+var Update = setInterval(function(){Game();},timelapse);
+
+//HighSpeed Mode
+function hs()
+{
+	this.id = document.getElementById("hs");
+	if(id.style.color == "white")
+	{
+	id.innerHTML = "HighSpeed mode : on";
+	id.style.color = "green";
+	timelapse = 35;
+	clearInterval(Update);
+	Update = setInterval(function(){Game();},timelapse);
+	}
+	else
+	{
+	id.innerHTML = "HighSpeed mode : off";
+	id.style.color = "white";
+	timelapse = 100;
+	clearInterval(Update);
+	Update = setInterval(function(){Game();},timelapse);
+	}
+}
+
+//HighSpeed Mode
+function rm()
+{
+	this.id = document.getElementById("rm");
+	if(id.style.color == "white")
+	{
+	id.innerHTML = "Rainbow mode : on";
+	id.style.color = "green";
+	setInterval(function(){
+		if(this.current == this.colorList.length-1)
+			this.current = 0;
+		s.color = this.colorList[this.current];
+		this.current++;
+	},timelapse);
+	this.current = 0;
+	this.colorList = ["red","pink","orange","green","blue","purple","yellow"];
+	}
+	else
+	{
+	id.innerHTML = "Rainbow mode : off";
+	id.style.color = "white";
+	s.color = "purple";
+	}
+}
 
 //key action
 document.addEventListener("keydown", function(event) 
@@ -117,5 +169,9 @@ document.addEventListener("keydown", function(event)
 	else if(event.keyCode == 82)
 	{
 		s = new Snake();
+	}
+	else
+	{
+		event.preventDefault();
 	}
 });
