@@ -29,6 +29,18 @@ h1
 	margin-top:20px;
 	margin-bottom:5px;
 }
+p
+{
+	color:white;
+	font-family:titlefont;
+}
+h3
+{
+	font-size:25px;
+	font-weight:300;
+	color:white;
+	font-family:titlefont;
+}
 div
 {
 	border:2px black;

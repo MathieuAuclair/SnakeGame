@@ -3,6 +3,15 @@ var canvas = document.getElementById("playBoard");
 var ctx = canvas.getContext("2d");
 var f = new food();
 var s = new Snake();
+var d = new Display();
+var timelapse = 100;
+
+function Display()
+{
+	this.time = document.getElementById("time");
+	this.length = document.getElementById("length");
+	this.totaltime = 0;
+}
 
 //function draw, who draw square with the info provided
 function draw(offsetX, offsetY, color)
@@ -48,6 +57,7 @@ var Update = setInterval(function(){
 		if(s.x == f.x && s.y == f.y)
 		{
 			s.len++;
+			d.length.innerHTML = "tail lenght : "+s.len;
 			f = new food();
 		}
 		//init value of head before body loop
@@ -72,8 +82,10 @@ var Update = setInterval(function(){
 		//draw everything in the canvas
 		draw(s.x,s.y,"white");
 		draw(f.x,f.y,"red");
+		d.totaltime += timelapse;
+		d.time.innerHTML = "time played : "+Math.round(d.totaltime/1000);
 	}
-},100);
+},timelapse);
 
 //key action
 document.addEventListener("keydown", function(event) 
